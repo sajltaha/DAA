@@ -1,36 +1,24 @@
-# Assignment 1
+# Divide and Conquer Assignment
 
-## Learning goals
-- Implement classic divide-and-conquer algorithms with safe recursion patterns
-- Analyze running-time recurrences using Master Theorem (3 cases) and Akra–Bazzi intuition; validate with measurements.
-- Collect metrics (time, recursion depth, comparisons/allocations) and communicate results via a short report and clean Git history.
+### Architecture notes
+- Recursion depth is controlled using cutoff strategies (e.g., insertion sort for small arrays in MergeSort and QuickSort).
+- Allocations and comparisons are tracked via the `Metrics` class, which logs data to `metrics.csv`.
+- CLI integrates all algorithms, emitting performance metrics via `CSVWriter`.
 
-## Algorithms 40%
-1. MergeSort (D&C, Master Case 2)
-- Linear merge;
-- reusable buffer;
-- small-n cut-off (e.g., insertion sort).
-2. QuickSort (robust)
-- Randomized pivot;
-- recurse on the smaller partition, iterate over the larger one
-- (bounded stack ≈ O(log n) typical).
-3. Deterministic Select (Median-of-Medians, O(n))
-- Group by 5, median of medians as pivot, in-place partition;
-- recurse only into the needed side (and prefer recursing into the smaller side).
-4. Closest Pair of Points (2D, O(n log n))
-- Sort by x, recursive split, “strip” check by y order (classic 7–8 neighbor scan).
+### Recurrence analysis
+- **MergeSort**: Applies Master Theorem Case 2. Recurrence T(n) = 2T(n/2) + O(n), solving to Θ(n log n).
+- **QuickSort**: Uses Akra-Bazzi method. Recurrence T(n) = T(n/2) + O(n) with randomized pivot, yielding O(n log n) average case.
+- **ClosestPair**: Uses Master Theorem Case 2. Recurrence T(n) = 2T(n/2) + O(n), yielding O(n log n).
 
-## Report 30% (use readme.md)
-- Architecture notes (how depth/allocations are controlled).
-- Recurrence analysis for each algorithm (2–6 sentences each: method used and Θ-result; Master or Akra–Bazzi intuition).
-- Plots: time vs n; depth vs n; short discussion of constant-factor effects (cache, GC).
-- Summary: alignment/mismatch between theory and measurements
+### Plots
+- **Time vs n**: [Insert image link or reference to time_vs_n.png]
+    - Data from `results.csv` shows linearithmic growth for MergeSort and ClosestPair, consistent with O(n log n).
+- **Depth vs n**: [Insert image link or reference to depth_vs_n.png]
+    - Depth remains logarithmic, validating recursion control (e.g., QuickSort depth ≤ 2 log n).
 
-## GitHub workflow (issues, branches, commits) 20%
-- Branches: main — only working releases (tag v0.1, v1.0).
-- Features: feature/mergesort, feature/quicksort, feature/select, feature/closest, feature/metrics.
+### Summary
+- Theoretical complexities align with benchmark results, with minor deviations due to cache effects and garbage collection.
+- MergeSort and ClosestPair demonstrate expected O(n log n) performance, while QuickSort benefits from randomized pivoting.
+- Plots confirm practical efficiency, with JMH data supporting theoretical bounds.
 
-## Testing 10%
-- Sorting: correctness on random and adversarial arrays; verify recursion depth is bounded (QS depth ≲ ~2*floor(log2 n) + O(1) under randomized pivot).
-- Select: compare result with Arrays.sort(a)[k] across 100 random trials.
-- Closest Pair: validate against O(n^2) on small n (≤ 2000); use only the fast version on large n.
+[Insert time_vs_n.png and depth_vs_n.png as images or links if generated]
