@@ -20,5 +20,3 @@
 - Theoretical complexities align with benchmark results, with minor deviations due to cache effects and garbage collection.
 - MergeSort and ClosestPair demonstrate expected O(n log n) performance, while QuickSort benefits from randomized pivoting.
 - Plots confirm practical efficiency, with JMH data supporting theoretical bounds.
-
-[Insert time_vs_n.png and depth_vs_n.png as images or links if generated]
