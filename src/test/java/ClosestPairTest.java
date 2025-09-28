@@ -10,7 +10,7 @@ public class ClosestPairTest {
                 new ClosestPair.Point(3, 3)
         };
         double dist = ClosestPair.findClosestPair(points);
-        assertTrue(dist >= 0 && dist <= Math.sqrt(2)); // Ожидаем минимальное расстояние
+        assertTrue(dist >= 0 && dist <= Math.sqrt(2));
     }
 
     @Test

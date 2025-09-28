@@ -9,7 +9,7 @@ public class MergeSort {
 
     private static void sort(int[] arr, int left, int right) {
         Metrics.enterRecursion();
-        if (right - left <= 10) { // Small-n cutoff
+        if (right - left <= 10) {
             insertionSort(arr, left, right);
         } else {
             int mid = left + (right - left) / 2;

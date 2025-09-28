@@ -3,7 +3,7 @@ import java.io.IOException;
 public class CLI {
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("Usage: java -jar assignment1.jar <algorithm> <size>");
+            System.out.println("Usage: java -jar target/assignment1-1.0-SNAPSHOT-jar-with-dependencies.jar <algorithm> <size>");
             System.out.println("Algorithms: mergesort, quicksort, closest");
             return;
         }
